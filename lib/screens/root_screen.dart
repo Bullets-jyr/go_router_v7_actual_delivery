@@ -82,6 +82,14 @@ class RootScreen extends StatelessWidget {
               'Login2 Screen',
             ),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.go('/transition');
+            },
+            child: Text(
+              'Transition Screen',
+            ),
+          ),
         ],
       ),
     );

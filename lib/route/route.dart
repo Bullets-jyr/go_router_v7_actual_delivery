@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:go_router_v7_actual_delivery/screens/1_basic_screen.dart';
 
+import '../screens/10_transition_screen_1.dart';
+import '../screens/10_transition_screen_2.dart';
 import '../screens/2_named_screen.dart';
 import '../screens/3_push_screen.dart';
 import '../screens/4_pop_base_screen.dart';
@@ -135,14 +138,44 @@ final router = GoRouter(
           builder: (_, state) => LoginScreen(),
           routes: [
             GoRoute(
-              path: 'private',
-              builder: (_, state) => PrivateScreen(),
-              redirect: (context, state) {
-                if (!authState) {
-                  return '/login2';
-                }
-                return null;
-              }
+                path: 'private',
+                builder: (_, state) => PrivateScreen(),
+                redirect: (context, state) {
+                  if (!authState) {
+                    return '/login2';
+                  }
+                  return null;
+                }),
+          ],
+        ),
+        GoRoute(
+          path: 'transition',
+          builder: (_, state) => TransitionScreenOne(),
+          routes: [
+            GoRoute(
+              path: 'detail',
+              // builder: (_, state) => TransitionScreenTwo(),
+              pageBuilder: (_, state) => CustomTransitionPage(
+                transitionDuration: Duration(seconds: 3),
+                transitionsBuilder:
+                    // animation: 0 -> 1
+                    // secondaryAnimation: 0 <- 1
+                    (context, animation, secondaryAnimation, child) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                  return ScaleTransition(
+                    scale: animation,
+                    child: child,
+                  );
+                  // return RotationTransition(
+                  //   turns: animation,
+                  //   child: child,
+                  // );
+                },
+                child: TransitionScreenTwo(),
+              ),
             ),
           ],
         ),
