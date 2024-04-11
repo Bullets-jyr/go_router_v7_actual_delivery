@@ -18,6 +18,14 @@ class RootScreen extends StatelessWidget {
               'Go Basic',
             ),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.goNamed('named_screen');
+            },
+            child: Text(
+              'Go Named',
+            ),
+          ),
         ],
       ),
     );
