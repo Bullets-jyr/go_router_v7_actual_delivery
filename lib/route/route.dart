@@ -7,6 +7,8 @@ import '../screens/4_pop_base_screen.dart';
 import '../screens/5_pop_return_screen.dart';
 import '../screens/6_path_param_screen.dart';
 import '../screens/7_query_parameter.dart';
+import '../screens/8_nested_child_screen.dart';
+import '../screens/8_nested_screen.dart';
 import '../screens/root_screen.dart';
 
 // https://github.com/Bullets-jyr -> / -> path
@@ -72,6 +74,36 @@ final router = GoRouter(
           builder: (context, state) {
             return QueryParameterScreen();
           },
+        ),
+        ShellRoute(
+          builder: (context, state, child) {
+            return NestedScreen(
+              child: child,
+            );
+          },
+          routes: [
+            // /nested/a
+            GoRoute(
+              path: 'nested/a',
+              builder: (_, state) => NestedChildScreen(
+                routeName: '/nested/a',
+              ),
+            ),
+            // /nested/b
+            GoRoute(
+              path: 'nested/b',
+              builder: (_, state) => NestedChildScreen(
+                routeName: '/nested/b',
+              ),
+            ),
+            // /nested/c
+            GoRoute(
+              path: 'nested/c',
+              builder: (_, state) => NestedChildScreen(
+                routeName: '/nested/c',
+              ),
+            ),
+          ],
         ),
       ],
     ),
