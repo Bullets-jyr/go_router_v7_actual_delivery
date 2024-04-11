@@ -90,6 +90,14 @@ class RootScreen extends StatelessWidget {
               'Transition Screen',
             ),
           ),
+          ElevatedButton(
+            onPressed: () {
+              context.go('/error');
+            },
+            child: Text(
+              'Error Screen',
+            ),
+          ),
         ],
       ),
     );
