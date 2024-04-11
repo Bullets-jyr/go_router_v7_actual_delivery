@@ -6,6 +6,7 @@ import '../screens/3_push_screen.dart';
 import '../screens/4_pop_base_screen.dart';
 import '../screens/5_pop_return_screen.dart';
 import '../screens/6_path_param_screen.dart';
+import '../screens/7_query_parameter.dart';
 import '../screens/root_screen.dart';
 
 // https://github.com/Bullets-jyr -> / -> path
@@ -65,6 +66,12 @@ final router = GoRouter(
               },
             ),
           ],
+        ),
+        GoRoute(
+          path: 'query_param',
+          builder: (context, state) {
+            return QueryParameterScreen();
+          },
         ),
       ],
     ),
